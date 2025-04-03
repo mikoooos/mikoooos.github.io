@@ -6,8 +6,14 @@ let currentIndex = 0;
 
 // 1. 从 JSON 加载视频列表
 fetch("videos.json")
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP 错误！状态码: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
+        console.log("成功加载视频列表:", data);
         videoList = data;
         if (videoList.length > 0) {
             loadVideo(0);
