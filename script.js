@@ -4,19 +4,20 @@ let videoListElement = document.getElementById("videoList");
 let videoList = [];
 let currentIndex = 0;
 
-// 1. 从 JSON 加载视频列表
+// 1. 加载 JSON 剧集列表
 fetch("videos.json")
     .then(response => response.json())
     .then(data => {
+        console.log("视频列表加载成功:", data);
         videoList = data;
         if (videoList.length > 0) {
             loadVideo(0);
         }
         renderPlaylist();
     })
-    .catch(error => console.error("加载视频列表失败:", error));
+    .catch(error => console.error("视频列表加载失败:", error));
 
-// 2. 加载指定索引的视频
+// 2. 加载指定视频
 function loadVideo(index) {
     if (index >= 0 && index < videoList.length) {
         currentIndex = index;
@@ -27,7 +28,7 @@ function loadVideo(index) {
     }
 }
 
-// 3. 生成剧集列表
+// 3. 渲染剧集列表
 function renderPlaylist() {
     videoListElement.innerHTML = "";
     videoList.forEach((video, index) => {
@@ -41,7 +42,7 @@ function renderPlaylist() {
     });
 }
 
-// 4. 更新选中的剧集
+// 4. 更新高亮状态
 function updateActiveVideo() {
     let items = document.querySelectorAll(".playlist li");
     items.forEach((item, index) => {
@@ -49,41 +50,17 @@ function updateActiveVideo() {
     });
 }
 
-// 5. 上一集
-function prevVideo() {
-    if (currentIndex > 0) {
-        loadVideo(currentIndex - 1);
-    }
-}
+// 5. 上一集 / 下一集
+function prevVideo() { if (currentIndex > 0) loadVideo(currentIndex - 1); }
+function nextVideo() { if (currentIndex < videoList.length - 1) loadVideo(currentIndex + 1); }
 
-// 6. 下一集
-function nextVideo() {
-    if (currentIndex < videoList.length - 1) {
-        loadVideo(currentIndex + 1);
-    }
-}
+// 6. 监听播放结束，自动播放下一集
+videoPlayer.addEventListener("ended", () => nextVideo());
 
-// 7. 监听视频播放完毕，自动播放下一集
-videoPlayer.addEventListener("ended", function() {
-    if (currentIndex < videoList.length - 1) {
-        nextVideo();
-    }
-});
-
-// 8. 切换全屏
+// 7. 全屏 & 小窗模式
 function toggleFullScreen() {
-    if (!document.fullscreenElement) {
-        videoPlayer.requestFullscreen();
-    } else {
-        document.exitFullscreen();
-    }
+    document.fullscreenElement ? document.exitFullscreen() : videoPlayer.requestFullscreen();
 }
-
-// 9. 小窗播放
 async function togglePip() {
-    if (document.pictureInPictureElement) {
-        document.exitPictureInPicture();
-    } else if (videoPlayer.requestPictureInPicture) {
-        await videoPlayer.requestPictureInPicture();
-    }
+    document.pictureInPictureElement ? document.exitPictureInPicture() : await videoPlayer.requestPictureInPicture();
 }
