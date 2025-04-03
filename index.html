@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>春田花花放映厅</title>
+    <title>自适应视频播放器</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>春田花花放映厅</h1>
+    <h1>自适应视频播放器</h1>
 
     <div class="video-container">
         <video id="videoPlayer" controls>
@@ -21,6 +21,12 @@
             <button onclick="toggleFullScreen()">全屏</button>
             <button onclick="togglePip()">小窗</button>
         </div>
+    </div>
+
+    <!-- 剧集列表 -->
+    <div class="playlist">
+        <h2>剧集列表</h2>
+        <ul id="videoList"></ul>
     </div>
 
     <script src="script.js"></script>
