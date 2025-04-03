@@ -46,6 +46,41 @@ button:hover {
     background: #666;
 }
 
+/* 剧集列表 */
+.playlist {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.playlist h2 {
+    margin-bottom: 10px;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.playlist li {
+    padding: 10px;
+    margin: 5px 0;
+    background: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.playlist li:hover {
+    background: #555;
+}
+
+.playlist li.active {
+    background: #007BFF;
+}
+
 /* 适配移动端 */
 @media (max-width: 600px) {
     .controls {
