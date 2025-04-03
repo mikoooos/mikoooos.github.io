@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background: #000;
+    color: #fff;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.video-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #444;
+    color: white;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #666;
+}
+
+/* 适配移动端 */
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    button {
+        width: 100%;
+    }
+}
