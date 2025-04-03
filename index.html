@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>春田花花放映厅</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>自适应视频播放器</h1>
+
+    <div class="video-container">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            您的浏览器不支持 HTML5 视频播放。
+        </video>
+        <div class="controls">
+            <button onclick="prevVideo()">⬅ 上一集</button>
+            <button onclick="nextVideo()">下一集 ➡</button>
+            <button onclick="toggleFullScreen()">全屏</button>
+            <button onclick="togglePip()">小窗</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
